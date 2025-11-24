@@ -1,16 +1,31 @@
 from storage import timeseries
 from eventbus import eventbus
+import statistics
+
 
 class KPIProcessor:
+
     def computeKPIs(self, data):
-        kpi = {
+        """
+        Производим нормальную агрегацию:
+        - latency_avg: средняя задержка за последние N значений
+        - cpu
+        - bandwidth
+        - packetLoss
+        """
+
+        history = timeseries.queryMetrics(device=data["device"], limit=10)
+
+        latencies = [m["latency"] for m in history] + [data["latency"]]
+        latency_avg = statistics.mean(latencies)
+
+        return {
             "device": data["device"],
-            "latency_avg": (data["latency"] + data["latency"]) / 2,
-            "bandwidth": data.get("bandwidth", 0),
-            "cpu": data.get("cpu", 0),
-            "packetLoss": data.get("packetLoss", 0),
+            "latency_avg": latency_avg,
+            "cpu": data["cpu"],
+            "bandwidth": data["bandwidth"],
+            "packetLoss": data["packetLoss"]
         }
-        return kpi
 
     def updateMetrics(self, kpi):
         timeseries.writeMetric(kpi)
