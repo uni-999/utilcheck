@@ -13,8 +13,8 @@ class Collector:
         - CPU load
         - Interface in/out bytes
         """
-        cpu_oid = "1.3.6.1.4.1.2021.11.10.0"  # примерный OID CPU idle
-        bandwidth_oid = "1.3.6.1.2.1.2.2.1.10.1"  # inOctets
+        cpu_oid = "1.3.6.1.4.1.2021.11.10.0" 
+        bandwidth_oid = "1.3.6.1.2.1.2.2.1.10.1" 
 
         cpu_value = self.snmp_get(device, cpu_oid)
         bandwidth_value = self.snmp_get(device, bandwidth_oid)
@@ -24,7 +24,7 @@ class Collector:
 
         return {
             "device": device,
-            "cpu": 100 - int(cpu_value),         # CPU load %
+            "cpu": 100 - int(cpu_value),   
             "bandwidth": int(bandwidth_value or 0) / 1024
         }
 
@@ -45,9 +45,6 @@ class Collector:
             return None
 
     def sendPing(self, device):
-        """
-        Запуск 4 ping пакетов, считаем среднее время и потери
-        """
         try:
             result = subprocess.run(
                 ["ping", "-c", "4", device],
@@ -99,4 +96,5 @@ class Collector:
 
         merged = {**snmp, **ping, **http}
 
-        eve
+        eventbus.publish("telemetry", merged)
+

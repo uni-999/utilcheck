@@ -13,5 +13,5 @@ def handleAlert(alert):
 eventbus.subscribe("alert", handleAlert)
 
 while True:
-    collector.publishTelemetry("router-1")   # реальный девайс/IP
+    collector.publishTelemetry("router-1")
     time.sleep(5)
