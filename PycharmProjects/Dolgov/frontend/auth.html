@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Вход — NetGuardian Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="auth-body">
+    <!-- Анимированный фон -->
+    <div class="animated-bg">
+        <div class="gradient-orbs orb-1"></div>
+        <div class="gradient-orbs orb-2"></div>
+        <div class="gradient-orbs orb-3"></div>
+    </div>
+    <div class="bg-grid"></div>
+
+    <div class="auth-screen">
+        <div class="auth-container slide-up">
+            <div class="auth-header">
+                <h1>🛡️ NetGuardian Pro</h1>
+                <p>Мониторинг сети и безопасность в реальном времени</p>
+                <div class="tabs">
+                    <button class="tab active" data-tab="login">
+                        <i class="fas fa-sign-in-alt"></i> Войти
+                    </button>
+                    <button class="tab" data-tab="register">
+                        <i class="fas fa-user-plus"></i> Регистрация
+                    </button>
+                </div>
+            </div>
+
+            <form id="loginForm" class="auth-form active-form">
+                <div class="input-group">
+                    <input type="text" name="login" placeholder="Логин или email" required />
+                    <i class="fas fa-user input-icon"></i>
+                </div>
+                <div class="input-group password-group">
+                    <input type="password" name="password" placeholder="Пароль" required class="password-input" />
+                    <i class="fas fa-lock input-icon"></i>
+                    <button type="button" class="toggle-password" tabindex="-1">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <button type="submit" class="btn-primary">
+                    <span class="btn-text">
+                        <i class="fas fa-rocket"></i> Войти в систему
+                    </span>
+                    <div class="btn-spinner" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                </button>
+            </form>
+
+            <form id="registerForm" class="auth-form">
+                <div class="input-group">
+                    <input type="text" name="full_name" placeholder="Полное имя" required />
+                    <i class="fas fa-id-card input-icon"></i>
+                </div>
+                <div class="input-group">
+                    <input type="email" name="email" placeholder="Email" required />
+                    <i class="fas fa-envelope input-icon"></i>
+                </div>
+                <div class="input-group">
+                    <input type="text" name="login_username" placeholder="Логин для входа" required minlength="3"
+                        pattern="[a-zA-Z0-9_]+" title="Только латинские буквы, цифры и подчеркивание" />
+                    <i class="fas fa-at input-icon"></i>
+                </div>
+                <div class="input-group password-group">
+                    <input type="password" name="password" placeholder="Пароль" required minlength="8"
+                        class="password-input" />
+                    <i class="fas fa-key input-icon"></i>
+                    <button type="button" class="toggle-password" tabindex="-1">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <div class="input-group password-group">
+                    <input type="password" name="confirm_password" placeholder="Подтвердите пароль" required
+                        class="password-input" />
+                    <i class="fas fa-key input-icon"></i>
+                    <button type="button" class="toggle-password" tabindex="-1">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+
+                <div class="password-match" style="display: none;">
+                    <small class="match-text"></small>
+                </div>
+
+                <div class="password-info">
+                    <small>
+                        <i class="fas fa-shield-alt"></i>
+                        Внимание: Пароль будет сохранен в базе данных в открытом виде для демонстрационных целей.
+                        Не используйте реальные пароли!
+                    </small>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    <span class="btn-text">
+                        <i class="fas fa-plus-circle"></i> Создать аккаунт
+                    </span>
+                    <div class="btn-spinner" style="display: none;">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                </button>
+            </form>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
